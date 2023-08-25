@@ -1,5 +1,5 @@
 export const enviroment = () => {
-  return process.env.ENVIRONMENT === 'PROD' ? 'https://next-shop-mercadopago.vercel.app/' : 'http://localhost:3000/'
+  return 'https://next-shop-mercadopago.vercel.app/'
 }
 
 export const fetchAllProducts = async () => {
