@@ -34,8 +34,8 @@ export default function LibroPage () {
           </thead>
           <tbody>
             {
-                libros.map(libro => (
-                  <tr key={libro.id} className='bg-white border-b hover:bg-gray-50'>
+                libros.map((libro, i) => (
+                  <tr key={i} className='bg-white border-b hover:bg-gray-50'>
                     <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap '>
                       <Link href={'/productos/' + libro.id}> {libro.title} </Link>
                     </th>

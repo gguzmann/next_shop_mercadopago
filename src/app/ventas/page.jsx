@@ -1,15 +1,16 @@
 'use client'
 
+import { fetchAllProducts } from '@/util/data'
 import { useEffect, useState } from 'react'
 
 export default function FacturaPage () {
   const [a, setA] = useState([])
   useEffect(() => {
-    fetch('http://localhost:3000/api/products').then(resp => resp.json()).then(res => setA(res.data))
+    fetchAllProducts().then(resp => setA(resp))
   }, [])
   return (
-    <div>{a.map(x => (
-      <div key={x.id}>
+    <div>{a.map((x, i) => (
+      <div key={i}>
         {x.name}
         <div>{x.price}</div>
       </div>

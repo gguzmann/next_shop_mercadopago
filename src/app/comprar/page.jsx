@@ -13,7 +13,7 @@ export default function ComprarPage () {
       <h1>Comprar</h1>
       <section className='flex flex-wrap gap-2 h-screen overflow-y-scroll'>
         {
-          products.map(item => <Product key={item.id} item={item} />)
+          products.map((item, i) => <Product key={i} item={item} />)
         }
       </section>
     </div>
