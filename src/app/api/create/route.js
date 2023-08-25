@@ -10,7 +10,6 @@ export async function POST (req) {
   const result = await mercadopago.preferences.create({
     items
   })
-  console.log('result', result)
 
   return NextResponse.json({
     message: 'create order',

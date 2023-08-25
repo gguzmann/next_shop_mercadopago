@@ -1,8 +1,10 @@
 'use client'
+
+import { enviroment } from '@/util/data'
+
 export const Product = ({ item }) => {
   const clickPay = async () => {
-    console.log(item)
-    const response = await fetch('http://localhost:3000/api/create', {
+    const response = await fetch(enviroment() + 'api/create', {
       method: 'POST',
       body: JSON.stringify({
         items: [{
