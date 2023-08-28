@@ -1,5 +1,6 @@
 import { key } from '@/util/key'
 import { google } from 'googleapis'
+import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
 
 const SHEET_ID = process.env.SHEET_ID
@@ -7,8 +8,10 @@ const client = new google.auth.JWT(key.client_email, null, key.private_key, [
   'https://www.googleapis.com/auth/spreadsheets'
 ])
 const sheets = google.sheets({ version: 'v4', auth: client })
+export const revalidate = 3600 // revalidate the data at most every hour
 
-export async function GET () {
+export async function GET (req) {
+  console.log('GET asd')
   const { data } = await sheets.spreadsheets.values.get({ spreadsheetId: SHEET_ID, range: 'Data!A:P' })
   const newData = data.values.map(item => ({
     id: item[0],
@@ -28,6 +31,10 @@ export async function GET () {
     images4: item[14] ?? '',
     images5: item[15] ?? ''
   }))
+  const path = req.nextUrl.searchParams.get('path') || '/'
+  revalidatePath(path)
+
+  console.log(newData)
   newData.shift()
   return NextResponse.json({
     message: 'Get products',

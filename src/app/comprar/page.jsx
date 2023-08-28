@@ -1,4 +1,5 @@
 'use client'
+import { Carrito } from '@/components/Carrito'
 import { Product } from '@/components/Product'
 import { fetchAllProducts } from '@/util/data'
 import { useEffect, useState } from 'react'
@@ -10,7 +11,10 @@ export default function ComprarPage () {
   }, [])
   return (
     <div>
-      <h1>Comprar</h1>
+      <div className='flex justify-between mr-10 mb-2'>
+        <h1 className='text-2xl'>Comprar</h1>
+        <Carrito />
+      </div>
       <section className='flex flex-wrap gap-2 h-screen overflow-y-scroll'>
         {
           products.map((item, i) => <Product key={i} item={item} />)
